@@ -8,27 +8,38 @@ import static spark.Spark.*;
 public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
-      get("/", (request, response) -> {
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("template", "templates/home.vtl");
-        return new ModelAndView(model, "templates/layout.vtl");
-      }, new VelocityTemplateEngine());
+    String layout = "templates/layout.vtl";
 
-      get("/detector", (request, response) -> {
-        Map<String, Object> model = new HashMap<String, Object>();
+    get("/", (request, response) -> {
+      Map model = new HashMap();
 
-        String userInput = request.queryParams("blank");
-        App newApp = new App();
-        Boolean results = newApp.methodName(userInput);
-        model.put("results", results);
+      model.put("cuisines", Cuisine.all());
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
-        model.put("template", "templates/detector.vtl");
-        return new ModelAndView(model, "templates/layout.vtl");
-      }, new VelocityTemplateEngine());
-  }
+    get("/cuisines/:id", (request, response) -> {
+      Map model = new HashMap();
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
 
-  public static Boolean methodName(String userInput) {
-    return true;
+      model.put("cuisine", cuisine);
+      model.put("template", "templates/cuisine.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/cuisines/:id/newRestaurant", (request, response) -> {
+      Map model = new HashMap();
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+      String restName = request.queryParams("restName");
+      String restContact = request.queryParams("restContact");
+      Restaurant newRestaurant = new Restaurant(restName,restContact);
+      newRestaurant.save();
+      cuisine.addRestaurant(newRestaurant);
+      model.put("cuisine", cuisine);
+      model.put("template", "templates/cuisine.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 
 }

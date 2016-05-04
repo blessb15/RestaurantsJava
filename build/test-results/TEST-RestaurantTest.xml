@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RestaurantTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2016-05-04T21:50:51" hostname="epicodus-49.local" time="0.038">
+  <properties/>
+  <testcase name="Restaurant_findRestaurantObjectinDatabase" classname="RestaurantTest" time="0.013"/>
+  <testcase name="Restaurant_checkrestaurantSavestoDataBase" classname="RestaurantTest" time="0.013"/>
+  <testcase name="Restaurant_restaurantObjectsEqual" classname="RestaurantTest" time="0.004"/>
+  <testcase name="Restaurant_restaurantInstantiates" classname="RestaurantTest" time="0.004"/>
+  <testcase name="Restaurant_restaurantInstantiateswithName" classname="RestaurantTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

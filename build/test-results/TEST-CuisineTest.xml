@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CuisineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-05-04T21:50:51" hostname="epicodus-49.local" time="0.195">
+  <properties/>
+  <testcase name="Cuisine_InstantiateCuisinesWithName_Mexican" classname="CuisineTest" time="0.077"/>
+  <testcase name="Cuisine_InstantiateCuisinesCorrectly" classname="CuisineTest" time="0.005"/>
+  <testcase name="Cuisine_AddRestaurantObjectToCuisine" classname="CuisineTest" time="0.054"/>
+  <testcase name="Cuisine_returnAllCuisineRestaurants" classname="CuisineTest" time="0.029"/>
+  <testcase name="Cuisine_returnCuisineInsideofDataBase" classname="CuisineTest" time="0.013"/>
+  <testcase name="Cuisine_SaveToCuisinesTableInDatabase" classname="CuisineTest" time="0.013"/>
+  <testcase name="Cuisine_CuisineObjectsEqual" classname="CuisineTest" time="0.003"/>
+  <system-out><![CDATA[Billys
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
