@@ -1,0 +1,22 @@
+<h2>$restaurant.getName()</h2>
+
+<form action="/restaurants/$restaurant.getId()/newReview" method="post">
+  <label for="reviewerName">Name</label>
+  <input type="text" name="reviewerName">
+  <label for="reviewText">Write a review!</label>
+  <input type="text" name="reviewText">
+  <button type="submit" class="btn">Submit Review</button>
+</form>
+<br>
+<br>
+<form action="/restaurants/$restaurant.getId()/deleteRestaurant" method="get">
+  <button type="submit" class="btn btn-danger">Delete Restaurant</button>
+</form>
+<br>
+<br>
+<h5>Reviews($restaurant.allReviews().size())</h5>
+#foreach($review in $restaurant.allReviews())
+  <li>$review.getReviewer(), $review.getText()</li>
+#end
+<form action="/restaurants/$restaurant.getId()/deleteRestaurant" method="get">
+  <button type="submit" class="btn btn-danger">Delete Review</button>

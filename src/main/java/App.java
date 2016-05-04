@@ -40,6 +40,40 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+
+    get("/restaurants/:id", (request, response) -> {
+      Map model = new HashMap();
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(request.params(":id")));
+
+      model.put("restaurant", restaurant);
+      model.put("template", "templates/restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/restaurants/:id/deleteRestaurant", (request, response) -> {
+      Map model = new HashMap();
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(request.params(":id")));
+      Restaurant.delete(restaurant);
+      // Review restaurant = Review.find(Integer.parseInt(request.params(":id")));
+      // Review.delete(restaurant);
+      model.put("template", "templates/deleteRestaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/restaurants/:id/newReview", (request, response) -> {
+      Map model = new HashMap();
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(request.params(":id")));
+      String revName = request.queryParams("reviewerName");
+      String revText = request.queryParams("reviewText");
+      Review review = new Review(revText, revName);
+      review.save();
+      restaurant.addReview(review);
+
+      model.put("restaurant", restaurant);
+      model.put("template", "templates/restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 
 }

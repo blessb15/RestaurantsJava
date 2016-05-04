@@ -11,7 +11,7 @@
 </form>
 
   #foreach($restaurant in $cuisine.getAllRestaurants())
-  <li>$restaurant.getName()</li>
+  <li><a href="/restaurants/$restaurant.getId()">$restaurant.getName()</a></li>
   #end
   <br>
   <br>
