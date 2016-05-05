@@ -1,4 +1,4 @@
-<h1>$cuisine.getType()</h1>
+<h1 class="center">$cuisine.getType()</h1>
 
 <h3>Create a Restaurant</h3>
 <form action = "/cuisines/$cuisine.getId()/newRestaurant" method="post">
@@ -9,10 +9,14 @@
   <input type="text" name="restContact">
   <button type="submit" class="btn btn-default" name="button">Submit</button>
 </form>
-
+  <br>
+  <br>
+  <h3>Restaurants</h3>
   #foreach($restaurant in $cuisine.getAllRestaurants())
   <li><a href="/restaurants/$restaurant.getId()">$restaurant.getName()</a></li>
   #end
   <br>
   <br>
-  <a href="/">Select Cuisine</a>
+  <form action="/">
+  <button type="submit" class="btn btn-default">Go Back</button>
+  </form>

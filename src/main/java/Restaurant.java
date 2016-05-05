@@ -24,6 +24,10 @@ public class Restaurant{
     return id;
   }
 
+  public int getCuisineId(){
+    return cuisine_id;
+  }
+
   public static List<Restaurant> all(){
     try (Connection con = DB.sql2o.open()) {
       String sql = "SELECT (name, contact) FROM restaurants";
@@ -40,7 +44,7 @@ public class Restaurant{
 
   public static Restaurant find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT name, contact, id FROM restaurants WHERE id=:id";
+      String sql = "SELECT name, contact, id, cuisine_id FROM restaurants WHERE id=:id";
       return con.createQuery(sql).addParameter("id", id).executeAndFetchFirst(Restaurant.class);
     }
   }

@@ -74,6 +74,23 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/restaurants/review/:id", (request, response) -> {
+      Map model = new HashMap();
+      Review review = Review.find(Integer.parseInt(request.params(":id")));
+
+      model.put("review", review);
+      model.put("template", "templates/review.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/restaurants/:id/deleteReview", (request, response) -> {
+      Map model = new HashMap();
+      Review review = Review.find(Integer.parseInt(request.params(":id")));
+      Review.delete(review);
+      model.put("template", "templates/deleteRestaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 
 }
